@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-// Socket
-import socket from './sockets/socket.ts'
+import { useEffect, useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import socket from './sockets/socket';
+import { useWebSocket } from './sockets/websocketContext';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const { channel } = useWebSocket(); // Ensure the hook is used correctly
 
   useEffect(() => {
     const channel = socket.channel("testing_channel:lobby", {});
@@ -30,7 +31,16 @@ function App() {
     };
   }, []);
 
-  const [count, setCount] = useState(0)
+  const logClick = () => {
+    if (channel) {
+      channel.push("new_msg", {
+        msg: "bellaaaa",
+        count: count,
+      }, 1000);
+      setCount(count + 1);
+    }
+    console.log(channel)
+  };
 
   return (
     <>
@@ -44,7 +54,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={logClick}>
           count is {count}
         </button>
         <p>
@@ -55,7 +65,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
