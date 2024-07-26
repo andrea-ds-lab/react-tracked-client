@@ -1,46 +1,26 @@
-import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { useState } from 'react';
 import './App.css';
-import socket from './sockets/socket';
 import { useWebSocket } from './sockets/websocketContext';
 
 function App() {
   const [count, setCount] = useState(0);
-  const { channel } = useWebSocket(); // Ensure the hook is used correctly
-
-  useEffect(() => {
-    const channel = socket.channel("testing_channel:lobby", {});
-
-    channel.join()
-      .receive("ok", (response) => {
-        console.log("Joined successfully", response);
-      })
-      .receive("error", (response) => {
-        console.log("Unable to join", response);
-      });
-
-    // Handle incoming messages
-    channel.on("new_msg", (payload) => {
-      console.log("New message received:", payload);
-    });
-
-    // Cleanup on unmount
-    return () => {
-      channel.leave();
-    };
-  }, []);
+  const { channel } = useWebSocket();
 
   const logClick = () => {
+    setCount(count + 1);
     if (channel) {
-      channel.push("new_msg", {
+      channel.push("btn_track", {
         msg: "bellaaaa",
         count: count,
-      }, 1000);
-      setCount(count + 1);
+      }, 5000)
+        .receive("ok", (response) => {
+          console.log("Message sent successfully:", response);
+        })
+        .receive("error", (response) => {
+          console.log("Unable to send message:", response);
+        });
     }
-    console.log(channel)
-  };
+  }
 
   return (
     <>
