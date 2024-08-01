@@ -14,10 +14,68 @@
 }
 
 [data-theme="light"] {
+  /* Primary Colors */
   --primary-color: #f159f1;
+  /* Cool Pink */
+  --secondary-color: #f68b7f;
+  /* Coral Pink */
+
+  /* Background Colors */
   --background-color: #fdadec;
+  /* Light Pink */
+  --background-secondary: #ffeef0;
+  /* Very Light Pink */
+  --background-accent: #ffffff;
+  /* White for cards and accents */
+
+  /* Text Colors */
   --text-color-primary: #222222;
+  /* Dark Gray for primary text */
+  --text-color-secondary: #555555;
+  /* Medium Gray for secondary text */
+  --text-color-accent: #f159f1;
+  /* Accent color for links and highlights */
+
+  /* Border Colors */
+  --border-color-light: #f8d8e6;
+  /* Light Pink for borders */
+  --border-color-dark: #f0a1b0;
+  /* Darker Pink for more prominent borders */
+
+  /* Button Colors */
+  --button-bg-primary: #f159f1;
+  /* Cool Pink for primary buttons */
+  --button-bg-secondary: #f68b7f;
+  /* Coral Pink for secondary buttons */
+  --button-text-color: #ffffff;
+  /* White text for buttons */
+  --button-hover-bg-primary: #d74a9b;
+  /* Darker Pink on hover */
+  --button-hover-bg-secondary: #d16b6b;
+  /* Darker Coral Pink on hover */
+
+  /* Link Colors */
+  --link-color: #f159f1;
+  /* Cool Pink for links */
+  --link-hover-color: #d74a9b;
+  /* Darker Pink on hover */
+
+  /* Input Colors */
+  --input-bg: #ffffff;
+  /* White background for inputs */
+  --input-border: #f0a1b0;
+  /* Pink border for inputs */
+  --input-focus-border: #f159f1;
+  /* Cool Pink border when focused */
+
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  /* Light shadow for elements */
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  /* Darker shadow for depth */
 }
+
+
 
 button {
   background-color: var(--background-color);
@@ -26,5 +84,9 @@ button {
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.5;
+}
+
+body {
+  background-color: var(--background-color);
 }
