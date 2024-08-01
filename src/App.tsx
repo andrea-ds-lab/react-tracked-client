@@ -3,7 +3,7 @@ import './App.css';
 import { useWebSocket } from './sockets/websocketContext';
 import '@rainbow-me/rainbowkit/styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { WagmiProvider, http, useBlockNumber, useChainId, useChains, useClient } from 'wagmi';
+import { WagmiProvider, http, useChainId, useChains } from 'wagmi';
 import { base, mainnet, polygon } from 'wagmi/chains';
 import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -26,12 +26,13 @@ function App() {
 
   const { ...chains } = useChains()
   const chainId = useChainId()
-  const blockNumber = useBlockNumber()
 
   useEffect(() => {
     console.log(chains)
     console.log(chainId)
-    console.log("Block number: %d", blockNumber)
+
+    const newTheme: string = getTheme(chainId)
+    document.documentElement.setAttribute('data-theme', newTheme);
   }, [chainId])
 
   const logClick = () => {
@@ -61,6 +62,19 @@ function App() {
       </div>
     </>
   );
+}
+
+
+function getTheme(chainId: number): string {
+
+  switch (chainId) {
+    case 1:
+      return "dark"
+    case 137:
+      return "light"
+    default:
+      return "base"
+  }
 }
 
 function WrappedApp() {
