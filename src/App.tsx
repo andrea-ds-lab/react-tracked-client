@@ -10,7 +10,7 @@ function App() {
     setCount(count + 1);
     if (channel) {
       channel.push("btn_track", {
-        msg: "bellaaaa",
+        msg: "Ho cliccato il pulsante",
         count: count,
       }, 5000)
         .receive("ok", (response) => {
@@ -24,18 +24,12 @@ function App() {
 
   return (
     <>
-      <h1>Client con Websocket a Phoenix</h1>
+      <h1>Client con Websocket connessa a server Phoenix</h1>
       <div className="card">
         <button onClick={logClick}>
-          count is {count}
+          Messaggi inviati al server: {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

@@ -1,0 +1,30 @@
+/* themes.css */
+
+/* Default theme */
+:root {
+  --primary-color: #3498db;
+  --background-color: #ecf0f1;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --primary-color: #6789ac;
+  --background-color: #34495e;
+  --text-color-primary: #dddddd;
+}
+
+[data-theme="light"] {
+  --primary-color: #f159f1;
+  --background-color: #fdadec;
+  --text-color-primary: #222222;
+}
+
+button {
+  background-color: var(--background-color);
+  border: 2px solid var(--primary-color);
+  color: var(--text-color-primary);
+}
+
+button:hover {
+  opacity: 0.8;
+}
