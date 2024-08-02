@@ -7,6 +7,9 @@ import { WagmiProvider, http, useChainId, useChains } from 'wagmi';
 import { base, mainnet, polygon } from 'wagmi/chains';
 import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Login } from './components/Login';
+import { Protected } from './components/Protected';
+import { AuthProvider } from './contexts/AuthContext';
 
 
 const config = getDefaultConfig({
@@ -59,6 +62,10 @@ function App() {
           Messaggi inviati al server: {count}
         </button>
         <ConnectButton />
+        <AuthProvider >
+          <Login />
+          <Protected />
+        </AuthProvider>
       </div>
     </>
   );
